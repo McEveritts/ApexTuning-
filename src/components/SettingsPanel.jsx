@@ -110,9 +110,21 @@ function SettingsPanel({ onClearChat }) {
                 <div className="form-group" style={{ marginBottom: '1rem' }}>
                     <label>AI Model</label>
                     <select value={geminiModel} onChange={handleModelChange} style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-slate-primary)', color: 'var(--text-primary)', border: '1px solid var(--border-slate)', borderRadius: '4px' }}>
-                        <option value="gemini-2.5-flash">Gemini 2.5 Flash (Fast, Recommended)</option>
-                        <option value="gemini-2.5-pro">Gemini 2.5 Pro (Powerful, Slower)</option>
+                        {/* Gemini 3.1 Family */}
+                        <option value="gemini-3.1-flash">Gemini 3.1 Flash</option>
+                        <option value="gemini-3.1-pro">Gemini 3.1 Pro (Advanced)</option>
+
+                        {/* Gemini 3.0 Family */}
+                        <option value="gemini-3.0-flash">Gemini 3.0 Flash</option>
+                        <option value="gemini-3.0-pro">Gemini 3.0 Pro (Advanced)</option>
+
+                        {/* Gemini 2.5 Family */}
+                        <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+                        <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+
+                        {/* Gemini 2.0 Family */}
                         <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+                        <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash-Lite</option>
                         <option value="gemini-2.0-pro-exp-02-05">Gemini 2.0 Pro Experimental</option>
                     </select>
                 </div>
