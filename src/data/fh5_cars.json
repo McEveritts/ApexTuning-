@@ -1,62 +1,1332 @@
 [
-    {
-        "make": "Acura",
-        "model": "NSX",
-        "year": 2017
-    },
-    {
-        "make": "Alfa Romeo",
-        "model": "Giulia Quadrifoglio",
-        "year": 2017
-    },
-    {
-        "make": "Aston Martin",
-        "model": "Vantage",
-        "year": 2019
-    },
-    {
-        "make": "Audi",
-        "model": "RS 6 Avant",
-        "year": 2021
-    },
-    {
-        "make": "BMW",
-        "model": "M4 Competition",
-        "year": 2021
-    },
-    {
-        "make": "Chevrolet",
-        "model": "Corvette Stingray",
-        "year": 2020
-    },
-    {
-        "make": "Ferrari",
-        "model": "F8 Tributo",
-        "year": 2020
-    },
-    {
-        "make": "Ford",
-        "model": "Mustang Shelby GT500",
-        "year": 2020
-    },
-    {
-        "make": "Honda",
-        "model": "Civic Type R",
-        "year": 2018
-    },
-    {
-        "make": "Nissan",
-        "model": "Skyline GT-R V-Spec",
-        "year": 1999
-    },
-    {
-        "make": "Porsche",
-        "model": "911 GT3 RS",
-        "year": 2019
-    },
-    {
-        "make": "Toyota",
-        "model": "Supra RZ",
-        "year": 1998
-    }
+  {
+    "year": 0,
+    "make": "-----------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "---------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "---------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "---------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "---------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "----------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-----------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-----------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "--------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "---------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-----------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-----------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "--------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "---------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "----------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-----------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-----------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-------------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "------------------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "------------------------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "-------------------------------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "---------------------------------------------------------",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "125",
+    "model": "Extreme E"
+  },
+  {
+    "year": 0,
+    "make": "22",
+    "model": "Extreme E"
+  },
+  {
+    "year": 0,
+    "make": "23",
+    "model": "Extreme E"
+  },
+  {
+    "year": 0,
+    "make": "42",
+    "model": "Extreme E"
+  },
+  {
+    "year": 0,
+    "make": "44",
+    "model": "Extreme E"
+  },
+  {
+    "year": 0,
+    "make": "5",
+    "model": " Extreme E"
+  },
+  {
+    "year": 0,
+    "make": "55",
+    "model": "Extreme E"
+  },
+  {
+    "year": 0,
+    "make": "58",
+    "model": "Extreme E"
+  },
+  {
+    "year": 0,
+    "make": "6",
+    "model": " Extreme E"
+  },
+  {
+    "year": 1980,
+    "make": "Abarth",
+    "model": "131"
+  },
+  {
+    "year": 2016,
+    "make": "Abarth",
+    "model": "659"
+  },
+  {
+    "year": 2017,
+    "make": "Abarth",
+    "model": "124"
+  },
+  {
+    "year": 1992,
+    "make": "Alfa",
+    "model": "Romeo 155 Q4"
+  },
+  {
+    "year": 2007,
+    "make": "Alfa",
+    "model": "Romeo 8C Competizione"
+  },
+  {
+    "year": 2014,
+    "make": "Alfa",
+    "model": "Romeo 4C"
+  },
+  {
+    "year": 0,
+    "make": "Alpine",
+    "model": "2017 A110"
+  },
+  {
+    "year": 0,
+    "make": "Alumacraft",
+    "model": "Class 1 Buddy"
+  },
+  {
+    "year": 0,
+    "make": "Alumicraft",
+    "model": "Trick Truck"
+  },
+  {
+    "year": 0,
+    "make": "AMC",
+    "model": "Javelin"
+  },
+  {
+    "year": 0,
+    "make": "AMC",
+    "model": "Rebel"
+  },
+  {
+    "year": 0,
+    "make": "AMG",
+    "model": "GT Black Series"
+  },
+  {
+    "year": 0,
+    "make": "Ascari",
+    "model": "KZ1R"
+  },
+  {
+    "year": 0,
+    "make": "Aston",
+    "model": "Martin One-77"
+  },
+  {
+    "year": 0,
+    "make": "ATS",
+    "model": "GT"
+  },
+  {
+    "year": 0,
+    "make": "Audi",
+    "model": "2013 R8 Coupe V10 Plus 5.2 Fsi Quattro"
+  },
+  {
+    "year": 0,
+    "make": "Audi",
+    "model": "RS 4 Avant '18"
+  },
+  {
+    "year": 0,
+    "make": "Audi",
+    "model": "RS 7 Sportsback"
+  },
+  {
+    "year": 0,
+    "make": "Audi",
+    "model": "RS E-Tron GT"
+  },
+  {
+    "year": 0,
+    "make": "Audi",
+    "model": "RS6 Avant"
+  },
+  {
+    "year": 0,
+    "make": "Audi",
+    "model": "S1"
+  },
+  {
+    "year": 0,
+    "make": "Barbie",
+    "model": "Corvette"
+  },
+  {
+    "year": 0,
+    "make": "Barbie",
+    "model": "GMC"
+  },
+  {
+    "year": 0,
+    "make": "Bentley",
+    "model": "Turbo R"
+  },
+  {
+    "year": 0,
+    "make": "Bmw",
+    "model": "2015 X6 M"
+  },
+  {
+    "year": 0,
+    "make": "BMW",
+    "model": "M4 Competition Coupe"
+  },
+  {
+    "year": 0,
+    "make": "BMW",
+    "model": "M4 Competition Coupe"
+  },
+  {
+    "year": 0,
+    "make": "BMW",
+    "model": "X5 M"
+  },
+  {
+    "year": 1996,
+    "make": "BMW",
+    "model": "850CSi"
+  },
+  {
+    "year": 2021,
+    "make": "BMW",
+    "model": "M3"
+  },
+  {
+    "year": 2022,
+    "make": "BMW",
+    "model": "i4"
+  },
+  {
+    "year": 2022,
+    "make": "BMW",
+    "model": "iX"
+  },
+  {
+    "year": 2023,
+    "make": "BMW",
+    "model": "M2"
+  },
+  {
+    "year": 0,
+    "make": "Brabham",
+    "model": "BT62"
+  },
+  {
+    "year": 0,
+    "make": "Cadillac",
+    "model": "CT4"
+  },
+  {
+    "year": 0,
+    "make": "Cadillac",
+    "model": "CT5"
+  },
+  {
+    "year": 0,
+    "make": "Cadillac",
+    "model": "XTS Limousine"
+  },
+  {
+    "year": 0,
+    "make": "Car",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "Car",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "Casey",
+    "model": "Currie Trophy Jeep"
+  },
+  {
+    "year": 0,
+    "make": "Chevrolet",
+    "model": "1953 Corvette"
+  },
+  {
+    "year": 0,
+    "make": "Chevrolet",
+    "model": "1970 Corvette ZR-1"
+  },
+  {
+    "year": 2024,
+    "make": "Chevrolette",
+    "model": "E-Ray"
+  },
+  {
+    "year": 0,
+    "make": "Chevy",
+    "model": "K10"
+  },
+  {
+    "year": 0,
+    "make": "COPO",
+    "model": "Camaro"
+  },
+  {
+    "year": 0,
+    "make": "Cupra",
+    "model": "Formentor V25"
+  },
+  {
+    "year": 0,
+    "make": "Cupra",
+    "model": "Tavascan concept"
+  },
+  {
+    "year": 0,
+    "make": "DE",
+    "model": "Luxe FE"
+  },
+  {
+    "year": 0,
+    "make": "Deberti",
+    "model": "Mustang"
+  },
+  {
+    "year": 0,
+    "make": "DeLorean",
+    "model": "DMC-12"
+  },
+  {
+    "year": 0,
+    "make": "Derbeti",
+    "model": "F-250"
+  },
+  {
+    "year": 0,
+    "make": "Dodge",
+    "model": "Charger R/T"
+  },
+  {
+    "year": 0,
+    "make": "Dodge",
+    "model": "Coronet Super Bee"
+  },
+  {
+    "year": 0,
+    "make": "Donkervoort",
+    "model": "GTO"
+  },
+  {
+    "year": 0,
+    "make": "Eagle",
+    "model": "Speedster"
+  },
+  {
+    "year": 2019,
+    "make": "Elemental",
+    "model": "RP1"
+  },
+  {
+    "year": 0,
+    "make": "Exomotive",
+    "model": "2018 Exocet Off-Road"
+  },
+  {
+    "year": 0,
+    "make": "F40",
+    "model": "C"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "1967 #24 Ferrari Spa 330 P4"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "1969 Dino 246 GT"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "2013 458 Speciale"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "250 GT"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "512 TR"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "575M Mararello"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "599 GTO"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "599XX"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "599XX"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "California T"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "F8 Tributo"
+  },
+  {
+    "year": 0,
+    "make": "Ferrari",
+    "model": "SF90 Stradale"
+  },
+  {
+    "year": 2020,
+    "make": "Ferrari",
+    "model": "Roma"
+  },
+  {
+    "year": 2022,
+    "make": "Ferrari",
+    "model": "296 GTB"
+  },
+  {
+    "year": 0,
+    "make": "Firebird",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "1981 Fiesta XR2"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "2005 GT"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "2017 N0.14 Rahal Letterman Lanigan Racing Fiesta"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "2019 Ranger Raptor"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "F-150 Lightning"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "F-150 XLT"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "Focus RS"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "GT OPI"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "Mustang Mach-E"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "Racing Puma"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "Super Deluxe Wagon"
+  },
+  {
+    "year": 0,
+    "make": "Ford",
+    "model": "Supervan 3 Donut Media"
+  },
+  {
+    "year": 2022,
+    "make": "Ford",
+    "model": "Bronco Raptor"
+  },
+  {
+    "year": 0,
+    "make": "GMC",
+    "model": "Hummer"
+  },
+  {
+    "year": 0,
+    "make": "GMC",
+    "model": "Syclone"
+  },
+  {
+    "year": 0,
+    "make": "GMC",
+    "model": "Typhoon"
+  },
+  {
+    "year": 0,
+    "make": "Gymkhana",
+    "model": "9 RX"
+  },
+  {
+    "year": 0,
+    "make": "HDT",
+    "model": "Commodore Group A"
+  },
+  {
+    "year": 0,
+    "make": "Henessey",
+    "model": "Chevy"
+  },
+  {
+    "year": 0,
+    "make": "Honda",
+    "model": "Civic Coupe 2016"
+  },
+  {
+    "year": 0,
+    "make": "Honda",
+    "model": "NSX-R GT"
+  },
+  {
+    "year": 0,
+    "make": "Honda",
+    "model": "Ridgeline"
+  },
+  {
+    "year": 0,
+    "make": "Hoonigan",
+    "model": "Gymkhana 10 Hoonicorn V2"
+  },
+  {
+    "year": 0,
+    "make": "Hoonigan",
+    "model": "Gymkhana 10 Hoonicorn V2"
+  },
+  {
+    "year": 0,
+    "make": "Hoonigan",
+    "model": "Scumbug"
+  },
+  {
+    "year": 0,
+    "make": "Hot",
+    "model": "Wheels 1969 Twin Mill"
+  },
+  {
+    "year": 0,
+    "make": "Hot",
+    "model": "Wheels BTTB"
+  },
+  {
+    "year": 0,
+    "make": "Hot",
+    "model": "Wheels Ford F-5 Dually Custom Hot Rod"
+  },
+  {
+    "year": 0,
+    "make": "Hot",
+    "model": "Wheels Ford Mustang"
+  },
+  {
+    "year": 0,
+    "make": "Hot",
+    "model": "Wheels Nash Metropolitan Custom"
+  },
+  {
+    "year": 0,
+    "make": "Hot",
+    "model": "Wheels Rip Rod"
+  },
+  {
+    "year": 0,
+    "make": "Hotwheels",
+    "model": "2Jetz"
+  },
+  {
+    "year": 0,
+    "make": "HW",
+    "model": "firebird"
+  },
+  {
+    "year": 0,
+    "make": "Hyundai",
+    "model": "2019 Veloster N"
+  },
+  {
+    "year": 0,
+    "make": "Italdesign",
+    "model": "Zerouno"
+  },
+  {
+    "year": 0,
+    "make": "Italdesign",
+    "model": "Zerouno"
+  },
+  {
+    "year": 2019,
+    "make": "Italdesign",
+    "model": "Davinci Concept"
+  },
+  {
+    "year": 0,
+    "make": "Jaguar",
+    "model": "1993 XJ220"
+  },
+  {
+    "year": 0,
+    "make": "Jaguar",
+    "model": "2015 F-Type R Coupe"
+  },
+  {
+    "year": 0,
+    "make": "Jaguar",
+    "model": "XKR-S GT"
+  },
+  {
+    "year": 0,
+    "make": "Jimco",
+    "model": "Hammerhead"
+  },
+  {
+    "year": 0,
+    "make": "Jumco",
+    "model": "Trophy Truck"
+  },
+  {
+    "year": 0,
+    "make": "Koenigsegg",
+    "model": "2008 CCGT"
+  },
+  {
+    "year": 0,
+    "make": "Koenigsegg",
+    "model": "Agera"
+  },
+  {
+    "year": 0,
+    "make": "Koenigsegg",
+    "model": "Agera 2011"
+  },
+  {
+    "year": 0,
+    "make": "KTM",
+    "model": "X-Bow GT4"
+  },
+  {
+    "year": 2020,
+    "make": "KTM",
+    "model": "X-Bow GT2"
+  },
+  {
+    "year": 0,
+    "make": "Lamborghini",
+    "model": "2010 Murcielago LP 670-4 SV"
+  },
+  {
+    "year": 0,
+    "make": "Lamborghini",
+    "model": "2011 Sesto Elemento"
+  },
+  {
+    "year": 0,
+    "make": "Lamborghini",
+    "model": "Aventador J"
+  },
+  {
+    "year": 0,
+    "make": "Lamborghini",
+    "model": "Aventador SVJ"
+  },
+  {
+    "year": 0,
+    "make": "Lamborghini",
+    "model": "Gallardo Spyder LP570-4"
+  },
+  {
+    "year": 0,
+    "make": "Lamborghini",
+    "model": "Huracan STO"
+  },
+  {
+    "year": 0,
+    "make": "Lamborghini",
+    "model": "Huracan STO"
+  },
+  {
+    "year": 0,
+    "make": "Lamborghini",
+    "model": "Sian Roadster (Secret Santa)"
+  },
+  {
+    "year": 2018,
+    "make": "Lamborghini",
+    "model": "#63 Squadra Corse Huracàn Super Trofeo"
+  },
+  {
+    "year": 2020,
+    "make": "Lamborghini",
+    "model": "Essenza SCV12"
+  },
+  {
+    "year": 2020,
+    "make": "Lamborghini",
+    "model": "SC20"
+  },
+  {
+    "year": 2022,
+    "make": "Lamborghini",
+    "model": "Huracàn Tecnica"
+  },
+  {
+    "year": 1982,
+    "make": "Lancia",
+    "model": "037"
+  },
+  {
+    "year": 1986,
+    "make": "Lancia",
+    "model": "Delta S4"
+  },
+  {
+    "year": 0,
+    "make": "Lexus",
+    "model": "LC 500"
+  },
+  {
+    "year": 0,
+    "make": "Link",
+    "model": "& Co 21"
+  },
+  {
+    "year": 0,
+    "make": "Lynk",
+    "model": "& Co 20"
+  },
+  {
+    "year": 0,
+    "make": "M3",
+    "model": "GTS"
+  },
+  {
+    "year": 0,
+    "make": "Maserati",
+    "model": "8CTF"
+  },
+  {
+    "year": 0,
+    "make": "Maserati",
+    "model": "Gran Turismo S"
+  },
+  {
+    "year": 0,
+    "make": "Mclaren",
+    "model": "1993 F1"
+  },
+  {
+    "year": 0,
+    "make": "McLaren",
+    "model": "650S Spider"
+  },
+  {
+    "year": 0,
+    "make": "McLaren",
+    "model": "765LT"
+  },
+  {
+    "year": 0,
+    "make": "Merc-AMG",
+    "model": "GT S"
+  },
+  {
+    "year": 0,
+    "make": "Mercedes",
+    "model": "AMG E63 S"
+  },
+  {
+    "year": 0,
+    "make": "Mercedes-Amg",
+    "model": "2018 E 63 S"
+  },
+  {
+    "year": 0,
+    "make": "Mercedes-Benz",
+    "model": "1998 Amg Clk Gtr"
+  },
+  {
+    "year": 0,
+    "make": "Mercedes-Benz",
+    "model": "2015 #24 Tankpool24 Racing Truck"
+  },
+  {
+    "year": 0,
+    "make": "Meyers",
+    "model": "1971 Manx"
+  },
+  {
+    "year": 0,
+    "make": "Meyers",
+    "model": "Manx"
+  },
+  {
+    "year": 2023,
+    "make": "Meyers",
+    "model": "Manx 2.0"
+  },
+  {
+    "year": 0,
+    "make": "MG",
+    "model": "#20 MG6 Xpower"
+  },
+  {
+    "year": 0,
+    "make": "MG",
+    "model": "MG3"
+  },
+  {
+    "year": 0,
+    "make": "MG",
+    "model": "MG6 Xpower"
+  },
+  {
+    "year": 0,
+    "make": "Mini",
+    "model": "2013 X-Raid All4 Racing Countryman"
+  },
+  {
+    "year": 0,
+    "make": "Mini",
+    "model": "Cooper S FE"
+  },
+  {
+    "year": 0,
+    "make": "Mitsubishi",
+    "model": "Galant VR-4"
+  },
+  {
+    "year": 0,
+    "make": "Morris",
+    "model": "1953 Minor 1000"
+  },
+  {
+    "year": 0,
+    "make": "Morris",
+    "model": "Series II Traveler"
+  },
+  {
+    "year": 0,
+    "make": "Morris",
+    "model": "Traveller"
+  },
+  {
+    "year": 0,
+    "make": "Nio",
+    "model": "EP9"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "2003 Fairlady Z"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "240SX FD Donut Media"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "GT-R Nismo"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "high car"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "low car"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "Safari Turbo"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "Sentra Nismo"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "Z 2023"
+  },
+  {
+    "year": 0,
+    "make": "Nissan",
+    "model": "Z Formula Drift #64"
+  },
+  {
+    "year": 2010,
+    "make": "Nissan",
+    "model": "Tsuru"
+  },
+  {
+    "year": 0,
+    "make": "Noble",
+    "model": "M600"
+  },
+  {
+    "year": 0,
+    "make": "Pagani",
+    "model": "2016 Huayra BC"
+  },
+  {
+    "year": 0,
+    "make": "Pagani",
+    "model": "2016 Huyara BC"
+  },
+  {
+    "year": 0,
+    "make": "Peel",
+    "model": "P50 (Secret Santa)"
+  },
+  {
+    "year": 0,
+    "make": "Peel",
+    "model": "Trident"
+  },
+  {
+    "year": 0,
+    "make": "Plymouth",
+    "model": "Barracuda"
+  },
+  {
+    "year": 0,
+    "make": "Plymouth",
+    "model": "Fury"
+  },
+  {
+    "year": 0,
+    "make": "Polaris",
+    "model": "Pro XP Factory Racing"
+  },
+  {
+    "year": 0,
+    "make": "Polaris",
+    "model": "Unknown"
+  },
+  {
+    "year": 0,
+    "make": "Pontiac",
+    "model": "1987 Firebird Trans Am Gta"
+  },
+  {
+    "year": 0,
+    "make": "Porche",
+    "model": "2018 Macan LPR Rally Raid"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "#70 935"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "23 917"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "550A Spyder"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "911 GT3 '21"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "911 GT3 RS"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "911 GT3 RS4"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "911 Reimagined by Singer"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "959"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "Emory 356 C"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "Guntherwerks"
+  },
+  {
+    "year": 0,
+    "make": "Porsche",
+    "model": "Mission R"
+  },
+  {
+    "year": 1951,
+    "make": "Porsche",
+    "model": "#46"
+  },
+  {
+    "year": 2022,
+    "make": "Porsche",
+    "model": "718"
+  },
+  {
+    "year": 0,
+    "make": "R8",
+    "model": "2013"
+  },
+  {
+    "year": 0,
+    "make": "Radical",
+    "model": "2015 RXC Turbo"
+  },
+  {
+    "year": 0,
+    "make": "Raesr",
+    "model": "Tachyon Speed"
+  },
+  {
+    "year": 0,
+    "make": "Renault",
+    "model": "Clio R.S. 16 Concept"
+  },
+  {
+    "year": 0,
+    "make": "Renault",
+    "model": "Clio R.S. 2010"
+  },
+  {
+    "year": 0,
+    "make": "Renault",
+    "model": "Megane RS 250 2010"
+  },
+  {
+    "year": 0,
+    "make": "Rimac",
+    "model": "Nevera"
+  },
+  {
+    "year": 2022,
+    "make": "Rivian",
+    "model": "R1S"
+  },
+  {
+    "year": 2022,
+    "make": "Rivian",
+    "model": "R1T"
+  },
+  {
+    "year": 0,
+    "make": "RJ",
+    "model": "Anderson Pro Truck"
+  },
+  {
+    "year": 0,
+    "make": "Saleen",
+    "model": "2004 S7"
+  },
+  {
+    "year": 0,
+    "make": "Sierra",
+    "model": "700"
+  },
+  {
+    "year": 0,
+    "make": "SL65",
+    "model": "Black Series"
+  },
+  {
+    "year": 0,
+    "make": "Subaru",
+    "model": "1998 Impreza 22B-STI Version"
+  },
+  {
+    "year": 0,
+    "make": "Subaru",
+    "model": "Brat"
+  },
+  {
+    "year": 0,
+    "make": "Subary",
+    "model": "Legacy RS"
+  },
+  {
+    "year": 0,
+    "make": "Toyota",
+    "model": "1985 Sprinter Trueno Gt Apex"
+  },
+  {
+    "year": 0,
+    "make": "Toyota",
+    "model": "4Runner TRD Pro AT38"
+  },
+  {
+    "year": 0,
+    "make": "Toyota",
+    "model": "Celica Sport"
+  },
+  {
+    "year": 0,
+    "make": "Toyota",
+    "model": "GR86"
+  },
+  {
+    "year": 0,
+    "make": "Toyota",
+    "model": "Land Cruser Arctic AT37"
+  },
+  {
+    "year": 0,
+    "make": "Toyota",
+    "model": "MR2 GT"
+  },
+  {
+    "year": 0,
+    "make": "Toyota",
+    "model": "Sport 800"
+  },
+  {
+    "year": 0,
+    "make": "Vauxhall",
+    "model": "Lotus Carlton"
+  },
+  {
+    "year": 0,
+    "make": "Volkswagen",
+    "model": "Beetle"
+  },
+  {
+    "year": 2022,
+    "make": "Volkswagen",
+    "model": "Golf R"
+  },
+  {
+    "year": 0,
+    "make": "Wuling",
+    "model": "Sunshine"
+  },
+  {
+    "year": 0,
+    "make": "XB",
+    "model": "falcon"
+  },
+  {
+    "year": 0,
+    "make": "Xpeng",
+    "model": "P7"
+  },
+  {
+    "year": 0,
+    "make": "Zenvo",
+    "model": "ST1"
+  }
 ]

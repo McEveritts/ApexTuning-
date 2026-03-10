@@ -1,0 +1,115 @@
+import React from 'react';
+
+/**
+ * GenUI Interactive Component
+ * This card renders natively INSIDE a message bubble when the Gemini API returns
+ * a valid 'tuningData' JSON physics payload. 
+ */
+function TuningCard({ tuningData }) {
+
+    // Copy the raw JSON to clipboard for fast sharing
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(JSON.stringify(tuningData, null, 2));
+        alert('Tuning values copied to clipboard!');
+    };
+
+    if (!tuningData) return null;
+
+    return (
+        <div className="card" style={{ padding: '1.5rem', marginTop: '0.5rem', backgroundColor: 'var(--bg-slate-primary)', border: '1px solid var(--border-slate)' }}>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-slate)', paddingBottom: '1rem' }}>
+                <h3 className="header-title" style={{ margin: 0, fontSize: '1.2rem' }}>
+                    Calculated Setup <span className="text-gold">[{tuningData.targetClass || "CLASS"}]</span>
+                </h3>
+                <button className="btn-secondary" onClick={copyToClipboard} style={{ padding: '0.5rem 1rem', fontSize: '0.8rem' }}>
+                    Copy Setup
+                </button>
+            </div>
+
+            <div className="layout-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+
+                {/* TIRES */}
+                <div className="panel-dark" style={{ padding: '1rem' }}>
+                    <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', marginTop: 0 }}>Tire Pressure (PSI)</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Front:</span>
+                        <span className="text-gold font-bold">{tuningData.tires?.front?.toFixed(1) || "N/A"}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Rear:</span>
+                        <span className="text-gold font-bold">{tuningData.tires?.rear?.toFixed(1) || "N/A"}</span>
+                    </div>
+                </div>
+
+                {/* ALIGNMENT */}
+                <div className="panel-dark" style={{ padding: '1rem' }}>
+                    <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', marginTop: 0 }}>Alignment</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Camber F:</span> <span className="text-gold font-bold">{tuningData.alignment?.camberFront?.toFixed(1) || "N/A"}°</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Camber R:</span> <span className="text-gold font-bold">{tuningData.alignment?.camberRear?.toFixed(1) || "N/A"}°</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Toe F:</span> <span className="text-gold font-bold">{tuningData.alignment?.toeFront?.toFixed(1) || "N/A"}°</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Toe R:</span> <span className="text-gold font-bold">{tuningData.alignment?.toeRear?.toFixed(1) || "N/A"}°</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Caster:</span> <span className="text-gold font-bold">{tuningData.alignment?.caster?.toFixed(1) || "N/A"}°</span></div>
+                </div>
+
+                {/* ARBS */}
+                <div className="panel-dark" style={{ padding: '1rem' }}>
+                    <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', marginTop: 0 }}>Anti-Roll Bars</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Front:</span>
+                        <span className="text-gold font-bold">{tuningData.arbs?.front?.toFixed(1) || "N/A"}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>Rear:</span>
+                        <span className="text-gold font-bold">{tuningData.arbs?.rear?.toFixed(1) || "N/A"}</span>
+                    </div>
+                </div>
+
+                {/* SPRINGS & RIDE HEIGHT */}
+                <div className="panel-dark" style={{ padding: '1rem' }}>
+                    <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', marginTop: 0 }}>Springs & Height</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Springs F:</span> <span className="text-gold font-bold">{tuningData.springs?.front?.toFixed(1) || "N/A"}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Springs R:</span> <span className="text-gold font-bold">{tuningData.springs?.rear?.toFixed(1) || "N/A"}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Height F:</span> <span className="text-gold font-bold">{tuningData.springs?.rideHeightFront || "N/A"}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Height R:</span> <span className="text-gold font-bold">{tuningData.springs?.rideHeightRear || "N/A"}</span></div>
+                </div>
+
+                {/* DAMPING */}
+                <div className="panel-dark" style={{ padding: '1rem' }}>
+                    <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', marginTop: 0 }}>Damping</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Rebound F:</span> <span className="text-gold font-bold">{tuningData.damping?.reboundFront?.toFixed(1) || "N/A"}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Rebound R:</span> <span className="text-gold font-bold">{tuningData.damping?.reboundRear?.toFixed(1) || "N/A"}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Bump F:</span> <span className="text-gold font-bold">{tuningData.damping?.bumpFront?.toFixed(1) || "N/A"}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Bump R:</span> <span className="text-gold font-bold">{tuningData.damping?.bumpRear?.toFixed(1) || "N/A"}</span></div>
+                </div>
+
+                {/* AERO & BRAKES */}
+                <div className="panel-dark" style={{ padding: '1rem' }}>
+                    <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', marginTop: 0 }}>Aero & Brakes</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Aero F:</span> <span className="text-gold font-bold">{tuningData.aero?.front || "N/A"}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Aero R:</span> <span className="text-gold font-bold">{tuningData.aero?.rear || "N/A"}</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem' }}><span>Brake Bias:</span> <span className="text-gold font-bold">{tuningData.brake?.bias || "N/A"}%</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Pressure:</span> <span className="text-gold font-bold">{tuningData.brake?.pressure || "N/A"}%</span></div>
+                </div>
+
+                {/* DIFFERENTIAL */}
+                <div className="panel-dark" style={{ padding: '1rem' }}>
+                    <h4 style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem', marginTop: 0 }}>Differential</h4>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Accel (R):</span> <span className="text-gold font-bold">{tuningData.diff?.accel || "N/A"}%</span></div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Decel (R):</span> <span className="text-gold font-bold">{tuningData.diff?.decel || "N/A"}%</span></div>
+                    {tuningData.diff?.center !== undefined && (
+                        <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border-slate)', paddingTop: '0.25rem', marginTop: '0.25rem' }}>
+                            <span>Center Balance:</span> <span className="text-gold font-bold">{tuningData.diff?.center}%</span>
+                        </div>
+                    )}
+                </div>
+
+            </div>
+            <div style={{ marginTop: '1rem', fontSize: '0.8rem', color: 'var(--text-secondary)', textAlign: 'center' }}>
+                Discipline: {tuningData.discipline || "Unknown"}
+            </div>
+        </div>
+    );
+}
+
+export default TuningCard;
