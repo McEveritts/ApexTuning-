@@ -123,7 +123,6 @@ export const generateSetup = async (telemetryData, apiKey) => {
                     tools: [{ googleSearch: {} }],
                     generationConfig: {
                         temperature: 0.2, // Low temperature for consistent mathematical output
-                        responseMimeType: "application/json",
                     }
                 }),
             }
@@ -144,9 +143,16 @@ export const generateSetup = async (telemetryData, apiKey) => {
         const data = await response.json();
 
         // Extract the text response from the Gemini payload struct
-        const textResponse = data.candidates[0].content.parts[0].text;
+        let textResponse = data.candidates[0].content.parts[0].text;
 
-        // As we forced responseMimeType: "application/json", this should safely parse
+        // Robust JSON extraction to handle Models wrapping output in markdown (e.g. ```json)
+        const startIndex = textResponse.indexOf('{');
+        const endIndex = textResponse.lastIndexOf('}');
+
+        if (startIndex !== -1 && endIndex !== -1) {
+            textResponse = textResponse.substring(startIndex, endIndex + 1);
+        }
+
         const tuningObject = JSON.parse(textResponse);
         return tuningObject;
 
