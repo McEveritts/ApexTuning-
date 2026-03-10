@@ -90,11 +90,17 @@ export const generateSetup = async (telemetryData, apiKey) => {
     }
 
     const userPrompt = `
-    Generate a tune for the following vehicle:
-    Weight: ${telemetryData.weight} lbs
-    Front Weight Distribution: ${telemetryData.weightDistributionFront}%
-    Horsepower: ${telemetryData.horsepower} hp
-    Drivetrain: ${telemetryData.drivetrain}
+    The user is requesting a tune for the following vehicle:
+    Car Name: ${telemetryData.carName}
+    
+    Use Google Search to find its stock Forza Horizon base weight, front weight distribution, stock horsepower, and stock drivetrain. 
+
+    If the user provided any of the following manual override telemetry, you MUST use the override values instead of the stock stats for all physics math calculations:
+    Override Weight: ${telemetryData.weight ? telemetryData.weight + ' lbs' : 'None provided (use stock)'}
+    Override Front Weight Distribution: ${telemetryData.weightDistributionFront ? telemetryData.weightDistributionFront + '%' : 'None provided (use stock)'}
+    Override Horsepower: ${telemetryData.horsepower ? telemetryData.horsepower + ' hp' : 'None provided (use stock)'}
+    Override Drivetrain: ${telemetryData.drivetrain ? telemetryData.drivetrain : 'None provided (use stock)'}
+    
     Target PI Class: ${telemetryData.piClass}
     Race Type (Discipline): ${telemetryData.raceType}
   `;

@@ -3,14 +3,16 @@ import ApiSettingsPanel from './ApiSettingsPanel';
 
 function InputDashboard({ onGenerate, isLoading }) {
     const [telemetry, setTelemetry] = useState({
+        carName: '',
         weight: '',
         weightDistributionFront: '',
         horsepower: '',
-        drivetrain: 'RWD',
+        drivetrain: '',
         piClass: 'A',
         raceType: 'Street',
         model: 'gemini-3.1-pro-preview'
     });
+    const [isAdvancedMode, setIsAdvancedMode] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,50 +36,75 @@ function InputDashboard({ onGenerate, isLoading }) {
 
             <form onSubmit={handleSubmit} style={{ marginTop: '2rem' }}>
                 <div className="form-group">
-                    <label>Vehicle Weight (lbs)</label>
+                    <label>Car Year, Make, and Model</label>
                     <input
-                        type="number"
-                        name="weight"
-                        value={telemetry.weight}
+                        type="text"
+                        name="carName"
+                        value={telemetry.carName}
                         onChange={handleChange}
-                        placeholder="e.g. 3200"
+                        placeholder="e.g. 2018 Alfa Romeo Giulia Quadrifoglio"
                         required
                     />
                 </div>
 
-                <div className="form-group">
-                    <label>Front Weight Distribution (%)</label>
-                    <input
-                        type="number"
-                        name="weightDistributionFront"
-                        value={telemetry.weightDistributionFront}
-                        onChange={handleChange}
-                        placeholder="e.g. 52"
-                        step="0.1"
-                        required
-                    />
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+                    <button
+                        type="button"
+                        onClick={() => setIsAdvancedMode(!isAdvancedMode)}
+                        style={{ background: 'none', border: 'none', color: 'var(--accent-gold)', cursor: 'pointer', fontWeight: 500, fontSize: '0.875rem' }}
+                    >
+                        {isAdvancedMode ? '- Hide Advanced Telemetry' : '+ Override Stock Telemetry'}
+                    </button>
                 </div>
 
-                <div className="form-group">
-                    <label>Horsepower</label>
-                    <input
-                        type="number"
-                        name="horsepower"
-                        value={telemetry.horsepower}
-                        onChange={handleChange}
-                        placeholder="e.g. 450"
-                        required
-                    />
-                </div>
+                {isAdvancedMode && (
+                    <div style={{ padding: '1rem', backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: '8px', border: '1px solid var(--border-slate)', marginBottom: '1.25rem' }}>
+                        <h4 style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>Manual Overrides (Upgraded Cars)</h4>
+                        <div className="form-group">
+                            <label>Override Weight (lbs)</label>
+                            <input
+                                type="number"
+                                name="weight"
+                                value={telemetry.weight}
+                                onChange={handleChange}
+                                placeholder="Leave blank to use stock"
+                            />
+                        </div>
 
-                <div className="form-group">
-                    <label>Drivetrain</label>
-                    <select name="drivetrain" value={telemetry.drivetrain} onChange={handleChange}>
-                        <option value="RWD">RWD (Rear-Wheel Drive)</option>
-                        <option value="AWD">AWD (All-Wheel Drive)</option>
-                        <option value="FWD">FWD (Front-Wheel Drive)</option>
-                    </select>
-                </div>
+                        <div className="form-group">
+                            <label>Override Distribution (%)</label>
+                            <input
+                                type="number"
+                                name="weightDistributionFront"
+                                value={telemetry.weightDistributionFront}
+                                onChange={handleChange}
+                                placeholder="Leave blank to use stock"
+                                step="0.1"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Override Horsepower</label>
+                            <input
+                                type="number"
+                                name="horsepower"
+                                value={telemetry.horsepower}
+                                onChange={handleChange}
+                                placeholder="Leave blank to use stock"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Override Drivetrain</label>
+                            <select name="drivetrain" value={telemetry.drivetrain} onChange={handleChange}>
+                                <option value="">Use Stock Drivetrain</option>
+                                <option value="RWD">RWD / Swap</option>
+                                <option value="AWD">AWD / Swap</option>
+                                <option value="FWD">FWD / Swap</option>
+                            </select>
+                        </div>
+                    </div>
+                )}
 
                 <div className="form-group">
                     <label>Target PI Class</label>
