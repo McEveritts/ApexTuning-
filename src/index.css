@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --bg-slate-primary: #0F172A;
+  --bg-slate-secondary: #1E293B;
+  --accent-gold: #F9AB00;
+  --text-primary: #FFFFFF;
+  --text-secondary: #94A3B8;
+  --accent-gold-hover: #fcd34d;
+  /* Brighter gold for hover */
+  --border-slate: #334155;
+  --error: #EF4444;
+  --success: #10B981;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-slate-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Base Form Elements */
+input,
+select {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-slate-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-slate);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent-gold);
+}
+
+label {
+  display: block;
+  color: var(--text-secondary);
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* Button Classes */
+.btn-primary {
+  background-color: var(--accent-gold);
+  color: var(--bg-slate-primary);
+  border: none;
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--accent-gold-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 171, 0, 0.2);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: var(--bg-slate-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-slate);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--border-slate);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--bg-slate-secondary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-slate);
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .layout-grid {
+    grid-template-columns: 350px 1fr;
+    align-items: start;
+  }
+}
+
+.header-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.header-accent {
+  height: 3px;
+  width: 50px;
+  background-color: var(--accent-gold);
+  margin-bottom: 2rem;
+  border-radius: 2px;
+}
+
+.text-gold {
+  color: var(--accent-gold);
+}
+
+.text-error {
+  color: var(--error);
+}
+
+.badge {
+  display: inline-flex;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-success {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-error {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: var(--error);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.panel-dark {
+  background-color: rgba(15, 23, 42, 0.4);
+  border-radius: 8px;
+  border: 1px solid var(--border-slate);
+  padding: 1.5rem;
+}
+
+.badge-gold {
+  background-color: rgba(249, 171, 0, 0.1);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+}
