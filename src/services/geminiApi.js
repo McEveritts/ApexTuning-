@@ -1,160 +1,56 @@
 /**
- * ApexTuning Gemini API Service (GenUI Architecture V4)
- * 
- * Executes the Forza Horizon tuning physics protocol conversationally.
- * Uses Gemini structured output (responseSchema) for guaranteed valid JSON.
- * Returns { narrative, requiresVehicleSelection?, tuningData? } for the frontend.
+ * ApexTuning Gemini API Service (GenUI Architecture V3)
+ * * Executes the 20-phase Forza Horizon tuning physics protocol conversationally.
+ * Utilizes Google Search Grounding to verify base stats and prevents the "application/json" 
+ * MIME type conflict by strictly enforcing a JSON-only response via the prompt and parsing 
+ * it securely using Regex substrings.
  */
 
-// --- Structured Output Schema (Gemini responseSchema format) ---
-// Defines the exact JSON contract. All tuningData sub-fields are optional
-// so the model can return narrative-only responses without a tune.
-const RESPONSE_SCHEMA = {
-    type: "OBJECT",
-    properties: {
-        narrative: {
-            type: "STRING",
-            description: "Conversational response to the user."
-        },
-        requiresVehicleSelection: {
-            type: "BOOLEAN",
-            description: "True only if user wants a tune but didn't specify exact Year, Make, Model."
-        },
-        tuningData: {
-            type: "OBJECT",
-            description: "Only present when delivering a complete calculated tune.",
-            nullable: true,
-            properties: {
-                targetClass: { type: "STRING" },
-                discipline: { type: "STRING" },
-                tires: {
-                    type: "OBJECT",
-                    properties: {
-                        front: { type: "NUMBER" },
-                        rear: { type: "NUMBER" }
-                    }
-                },
-                alignment: {
-                    type: "OBJECT",
-                    properties: {
-                        camberFront: { type: "NUMBER" },
-                        camberRear: { type: "NUMBER" },
-                        toeFront: { type: "NUMBER" },
-                        toeRear: { type: "NUMBER" },
-                        caster: { type: "NUMBER" }
-                    }
-                },
-                arbs: {
-                    type: "OBJECT",
-                    properties: {
-                        front: { type: "NUMBER" },
-                        rear: { type: "NUMBER" }
-                    }
-                },
-                springs: {
-                    type: "OBJECT",
-                    properties: {
-                        front: { type: "NUMBER" },
-                        rear: { type: "NUMBER" },
-                        rideHeightFront: { type: "NUMBER" },
-                        rideHeightRear: { type: "NUMBER" }
-                    }
-                },
-                damping: {
-                    type: "OBJECT",
-                    properties: {
-                        reboundFront: { type: "NUMBER" },
-                        reboundRear: { type: "NUMBER" },
-                        bumpFront: { type: "NUMBER" },
-                        bumpRear: { type: "NUMBER" }
-                    }
-                },
-                aero: {
-                    type: "OBJECT",
-                    properties: {
-                        front: { type: "NUMBER" },
-                        rear: { type: "NUMBER" }
-                    }
-                },
-                brake: {
-                    type: "OBJECT",
-                    properties: {
-                        bias: { type: "NUMBER" },
-                        pressure: { type: "NUMBER" }
-                    }
-                },
-                diff: {
-                    type: "OBJECT",
-                    properties: {
-                        accel: { type: "NUMBER" },
-                        decel: { type: "NUMBER" },
-                        center: { type: "NUMBER" }
-                    }
-                }
-            }
-        }
-    },
-    required: ["narrative"]
-};
-
-// --- Compact System Instruction ---
 const SYSTEM_INSTRUCTION = `
-You are the ApexTuning AI, an elite mathematical automotive engineer for the Forza Horizon game engine.
-You interact via chat. Your JSON output schema is enforced by the API — follow it exactly.
+You are the ApexTuning AI, an elite, mathematical automotive engineer specifically designed for the Forza Horizon game engine.
+You are interacting with a user via a chat interface.
 
-# RULE 1: VEHICLE IDENTIFICATION (INTENT ROUTING)
-If the user asks for a tune but does NOT provide the exact Car Year, Make, and Model:
-- Set "requiresVehicleSelection": true and do NOT include tuningData.
-- The frontend renders a dropdown widget when this is true.
+CRITICAL INSTRUCTION: You MUST output ONLY valid JSON. Your entire response must be parsable by JSON.parse().
+Do not include markdown formatting like \`\`\`json. Just output the raw JSON object.
 
-# RULE 2: SETTINGS OVERRIDES
-Respect the user's Unit System and Discipline preferences appended below.
-- Metric: weight in Kg, power in kW, tire pressure in Bar.
-- Imperial: weight in Lbs, power in HP, tire pressure in PSI.
-- If the user's prompt contradicts the Default Discipline, the user's prompt takes priority.
+# REQUIRED JSON OUTPUT SCHEMA
+{
+  "narrative": "Your friendly, conversational response to the user. Explain the tuning decisions here. (Required)",
+  "requiresVehicleSelection": false, // Set to true ONLY if the user asks for a tune but did not specify the Exact Year, Make, and Model
+  "tuningData": { 
+      // ONLY include this object if you have the EXACT vehicle and are providing a final tune.
+      // Do NOT include this object if requiresVehicleSelection is true.
+      "targetClass": "String (e.g. S1)",
+      "discipline": "String (e.g. STREET)",
+      "tires": { "front": 0.0, "rear": 0.0 },
+      "alignment": { "camberFront": 0.0, "camberRear": 0.0, "toeFront": 0.0, "toeRear": 0.0, "caster": 0.0 },
+      "arbs": { "front": 0.0, "rear": 0.0 },
+      "springs": { "front": 0.0, "rear": 0.0, "rideHeightFront": "String or Number", "rideHeightRear": "String or Number" },
+      "damping": { "reboundFront": 0.0, "reboundRear": 0.0, "bumpFront": 0.0, "bumpRear": 0.0 },
+      "aero": { "front": "String or Number", "rear": "String or Number" },
+      "brake": { "bias": 0.0, "pressure": 0.0 },
+      "diff": { "accel": 0.0, "decel": 0.0, "center": 0.0 } 
+  }
+}
+
+# RULE 0: VEHICLE IDENTIFICATION (INTENT ROUTING)
+If the user asks for a tune but does NOT provide the exact Car Year, Make, and Model, you must set "requiresVehicleSelection": true and omit the "tuningData" object.
+Do NOT attempt to guess the car or provide a generic tune. The frontend UI will render a dropdown widget when this is true.
+
+# RULE 1: SETTINGS OVERRIDES (CRITICAL)
+You must respect the user's explicit Unit System and Discipline preferences appended to the bottom of the system prompt.
+If the Unit System is Metric: Output weight in Kg, power in kW, and tire pressure in Bar.
+If the Unit System is Imperial: Output weight in Lbs, power in HP, and tire pressure in PSI.
+If the user's prompt contradicts the Default Discipline, the user's prompt takes priority.
+
+# RULE 2: THE GROUNDING PROTOCOL
+When you have the full car name, use your Search tools to verify Forza Horizon 5 base stats, weight distribution, stock horsepower, and min/max tuning values. Do NOT use real-world curb weights.
+If manual overrides are provided in the prompt, they override your internal knowledge.
 
 # RULE 3: DYNAMIC SCALING PHYSICS (NO HARD LIMITS)
-Every car has unique min/max slider boundaries. NEVER use hardcoded static values (e.g., 28 PSI or -1.5 camber).
-Calculate every value dynamically from the car's Weight, Weight Distribution, and class-specific min/max slider ranges.
-Proportional formula: (MaxSlider - MinSlider) × WeightDistribution% + MinSlider.
-Follow the 12-Phase physics protocol for Weight Dynamics, Gearing, ARBs, Springs, Damping, Aero, and Differential.
-
-# RULE 4: DISCIPLINE-SPECIFIC PHYSICS
-
-## STREET / TRACK (High Grip)
-Standard proportional scaling. Balanced front/rear distribution. Moderate camber (-0.5° to -2.0°). Diff tuned for controlled traction out of corners.
-
-## DIRT / RALLY / CROSS COUNTRY
-Softer springs and ARBs for terrain compliance. Increased ride height. Reduced camber. Higher tire pressure for puncture resistance. Looser diff decel for rotation on loose surfaces.
-
-## DRIFT (Proportional Math Dampened by 40%)
-- Rear camber aggressive: -3.0° to -5.0°. High front caster.
-- Softer front ARBs, stiffer rear ARBs for oversteer bias.
-- Diff accel 80–100%, decel 0–20% for sustained slides.
-- Lower rear tire pressure for increased slip angle.
-- All proportional calculations are dampened by 40% toward oversteer-biased extremes.
-
-## DRAG (Proportional Math Dampened by 60%)
-- Zero camber, zero toe for maximum straight-line contact patch.
-- Stiffest possible springs to minimize weight transfer.
-- Max rear aero only if top-speed limited, otherwise minimum aero.
-- Diff accel 100%, decel 0% for pure launch traction.
-- Brake bias 50/50. All proportional calculations dampened by 60% toward straight-line extremes.
-
-# RULE 5: FORZA ENGINE GROUNDING BOUNDARY (MANDATORY)
-You exist ONLY within the Forza Horizon game engine simulation.
-- NEVER use real-world curb weights, track widths, or suspension geometry from Google Search results.
-- If Google Search returns real-life specifications, IGNORE them for tuning math.
-- Only use search data to IDENTIFY which car the user means (year/make/model disambiguation).
-- All weight, power, and slider boundaries must come from your Forza Horizon knowledge base.
-- If uncertain about in-game stats, state your uncertainty — do NOT substitute real-world specs.
-
-# RULE 6: CONVERSATIONAL MEMORY
-You may receive multi-turn conversation history. When the user says things like "make the rear softer" or "adjust the diff", recalculate the PREVIOUS tuningData with the requested modification and return a complete updated tuningData object. Always reference the specific car from the conversation context.
+Every car has unique minimum and maximum slider boundaries. You MUST NOT use hardcoded static ranges (e.g., do not default to 28 PSI or -1.5 Camber). You must calculate every value dynamically based on the car's specific Weight, Weight Distribution, and presumed Min/Max slider values for its class. 
+Use the proportional tuning formula where applicable: (Max Slider Value - Min Slider Value) * Weight Distribution Percentage + Min Slider Value.
 `;
-
-// Maximum conversation turns sent to the API to prevent token overflow
-const MAX_HISTORY_TURNS = 10;
 
 export const generateSetup = async (conversationHistory, apiKey) => {
     if (!apiKey) {
@@ -165,14 +61,13 @@ export const generateSetup = async (conversationHistory, apiKey) => {
         // Read User Preferences
         const unitSystem = localStorage.getItem('PREF_UNIT_SYSTEM') || 'imperial';
         const defaultDiscipline = localStorage.getItem('PREF_DEFAULT_DISCIPLINE') || 'street';
-        const targetModel = localStorage.getItem('PREF_GEMINI_MODEL') || 'gemini-2.5-flash';
+        // Fallback to 2.5-pro if a cached invalid model exists
+        let targetModel = localStorage.getItem('PREF_GEMINI_MODEL') || 'gemini-2.5-pro';
+        if (targetModel.includes('3.0') || targetModel.includes('3.1')) {
+            targetModel = 'gemini-2.5-pro'; // Hotfix intercept
+        }
 
-        const dynamicSystemInstruction = SYSTEM_INSTRUCTION + `\n--- ACTIVE USER PREFERENCES ---\nUNIT SYSTEM: ${unitSystem.toUpperCase()}\nDEFAULT DISCIPLINE: ${defaultDiscipline.toUpperCase()}`;
-
-        // Trim conversation history to prevent token overflow
-        const trimmedHistory = conversationHistory.length > MAX_HISTORY_TURNS
-            ? conversationHistory.slice(-MAX_HISTORY_TURNS)
-            : conversationHistory;
+        const dynamicSystemInstruction = SYSTEM_INSTRUCTION + `\n\n--- DYNAMIC USER PREFERENCES ---\nUNIT SYSTEM: ${unitSystem.toUpperCase()}\nDEFAULT DISCIPLINE: ${defaultDiscipline.toUpperCase()}`;
 
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=` + apiKey,
@@ -185,15 +80,14 @@ export const generateSetup = async (conversationHistory, apiKey) => {
                     systemInstruction: {
                         parts: [{ text: dynamicSystemInstruction }]
                     },
-                    contents: trimmedHistory.map(msg => ({
-                        role: msg.role === 'assistant' ? 'model' : 'user',
+                    contents: conversationHistory.map(msg => ({
+                        role: msg.role === 'assistant' ? 'model' : 'user', // Map our UI roles to Gemini roles
                         parts: [{ text: msg.content }]
                     })),
+                    // Grounding Tools Enabled. Note: We strictly omit responseMimeType to prevent API conflicts.
                     tools: [{ googleSearch: {} }],
                     generationConfig: {
-                        temperature: 0.2,
-                        responseMimeType: "application/json",
-                        responseSchema: RESPONSE_SCHEMA,
+                        temperature: 0.2, // Low temperature for consistent math
                     }
                 }),
             }
@@ -204,17 +98,25 @@ export const generateSetup = async (conversationHistory, apiKey) => {
             try {
                 const errorData = await response.json();
                 errorMessage = errorData.error?.message || errorMessage;
-            } catch {
+            } catch (parseError) {
                 errorMessage = `Server Error: ${response.status} ${response.statusText}`;
             }
-            throw new Error(errorMessage);
+            throw new Error(`SYSTEM ERROR: ${errorMessage}`);
         }
 
         const data = await response.json();
 
-        // With responseMimeType: "application/json", the response is guaranteed valid JSON.
-        // No manual extraction needed — parse directly.
-        const textResponse = data.candidates[0].content.parts[0].text;
+        // Extract the raw text
+        let textResponse = data.candidates[0].content.parts[0].text;
+
+        // Robust JSON extraction intercepting any Markdown formatting (e.g. ```json)
+        const startIndex = textResponse.indexOf('{');
+        const endIndex = textResponse.lastIndexOf('}');
+
+        if (startIndex !== -1 && endIndex !== -1) {
+            textResponse = textResponse.substring(startIndex, endIndex + 1);
+        }
+
         const payloadObj = JSON.parse(textResponse);
         return payloadObj;
 

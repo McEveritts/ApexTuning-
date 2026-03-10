@@ -10,7 +10,7 @@ function SettingsPanel({ onClearChat, onLoadFavorite }) {
     // Section 2: Tuning Preferences
     const [unitSystem, setUnitSystem] = useState('imperial'); // 'imperial' or 'metric'
     const [defaultDiscipline, setDefaultDiscipline] = useState('street');
-    const [geminiModel, setGeminiModel] = useState('gemini-2.5-flash');
+    const [geminiModel, setGeminiModel] = useState('gemini-2.5-pro');
     const [theme, setTheme] = useState('gold');
     const [favorites, setFavorites] = useState([]);
 
@@ -19,7 +19,7 @@ function SettingsPanel({ onClearChat, onLoadFavorite }) {
         const savedKey = localStorage.getItem('GEMINI_API_KEY');
         const savedUnits = localStorage.getItem('PREF_UNIT_SYSTEM') || 'imperial';
         const savedDiscipline = localStorage.getItem('PREF_DEFAULT_DISCIPLINE') || 'street';
-        const savedModel = localStorage.getItem('PREF_GEMINI_MODEL') || 'gemini-2.5-flash';
+        const savedModel = localStorage.getItem('PREF_GEMINI_MODEL') || 'gemini-2.5-pro';
         const savedTheme = localStorage.getItem('PREF_THEME') || 'gold';
 
         if (savedKey) {
@@ -61,7 +61,7 @@ function SettingsPanel({ onClearChat, onLoadFavorite }) {
             } else {
                 setApiStatus({ type: 'error', message: 'Invalid API Key or Error' });
             }
-        } catch {
+        } catch (error) {
             setApiStatus({ type: 'error', message: 'Network error or unable to reach API' });
         } finally {
             setIsTesting(false);
@@ -136,22 +136,12 @@ function SettingsPanel({ onClearChat, onLoadFavorite }) {
                 <div className="form-group" style={{ marginBottom: '1rem' }}>
                     <label>AI Model</label>
                     <select value={geminiModel} onChange={handleModelChange} style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-slate-primary)', color: 'var(--text-primary)', border: '1px solid var(--border-slate)', borderRadius: '4px' }}>
-                        {/* Gemini 3.1 Family */}
-                        <option value="gemini-3.1-flash">Gemini 3.1 Flash</option>
-                        <option value="gemini-3.1-pro">Gemini 3.1 Pro (Advanced)</option>
-
-                        {/* Gemini 3.0 Family */}
-                        <option value="gemini-3.0-flash">Gemini 3.0 Flash</option>
-                        <option value="gemini-3.0-pro">Gemini 3.0 Pro (Advanced)</option>
-
-                        {/* Gemini 2.5 Family */}
-                        <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
-                        <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
-
-                        {/* Gemini 2.0 Family */}
-                        <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
-                        <option value="gemini-2.0-flash-lite">Gemini 2.0 Flash-Lite</option>
+                        {/* Validated Live Gemini Models */}
+                        <option value="gemini-2.5-pro">Gemini 2.5 Pro (Best Physics Math)</option>
+                        <option value="gemini-2.5-flash">Gemini 2.5 Flash (Fastest)</option>
                         <option value="gemini-2.0-pro-exp-02-05">Gemini 2.0 Pro Experimental</option>
+                        <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+                        <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
                     </select>
                 </div>
 
