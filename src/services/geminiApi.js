@@ -63,11 +63,12 @@ export const generateSetup = async (conversationHistory, apiKey) => {
         // Read User Preferences
         const unitSystem = localStorage.getItem('PREF_UNIT_SYSTEM') || 'imperial';
         const defaultDiscipline = localStorage.getItem('PREF_DEFAULT_DISCIPLINE') || 'street';
+        const targetModel = localStorage.getItem('PREF_GEMINI_MODEL') || 'gemini-2.5-flash';
 
         const dynamicSystemInstruction = SYSTEM_INSTRUCTION + `\n\n--- DYNAMIC USER PREFERENCES ---\nUNIT SYSTEM: ${unitSystem.toUpperCase()}\nDEFAULT DISCIPLINE: ${defaultDiscipline.toUpperCase()}`;
 
         const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + apiKey,
+            `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=` + apiKey,
             {
                 method: "POST",
                 headers: {

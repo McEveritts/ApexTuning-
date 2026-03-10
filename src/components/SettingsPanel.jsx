@@ -10,12 +10,14 @@ function SettingsPanel({ onClearChat }) {
     // Section 2: Tuning Preferences
     const [unitSystem, setUnitSystem] = useState('imperial'); // 'imperial' or 'metric'
     const [defaultDiscipline, setDefaultDiscipline] = useState('street');
+    const [geminiModel, setGeminiModel] = useState('gemini-2.5-flash');
 
     useEffect(() => {
         // Load global preferences
         const savedKey = localStorage.getItem('GEMINI_API_KEY');
         const savedUnits = localStorage.getItem('PREF_UNIT_SYSTEM') || 'imperial';
         const savedDiscipline = localStorage.getItem('PREF_DEFAULT_DISCIPLINE') || 'street';
+        const savedModel = localStorage.getItem('PREF_GEMINI_MODEL') || 'gemini-2.5-flash';
 
         if (savedKey) {
             setApiKey(savedKey);
@@ -25,6 +27,7 @@ function SettingsPanel({ onClearChat }) {
 
         setUnitSystem(savedUnits);
         setDefaultDiscipline(savedDiscipline);
+        setGeminiModel(savedModel);
     }, []);
 
     // --- API Handlers ---
@@ -79,6 +82,12 @@ function SettingsPanel({ onClearChat }) {
         localStorage.setItem('PREF_DEFAULT_DISCIPLINE', val);
     };
 
+    const handleModelChange = (e) => {
+        const val = e.target.value;
+        setGeminiModel(val);
+        localStorage.setItem('PREF_GEMINI_MODEL', val);
+    };
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', paddingBottom: '2rem' }}>
 
@@ -97,6 +106,17 @@ function SettingsPanel({ onClearChat }) {
                         style={{ width: '100%' }}
                     />
                 </div>
+
+                <div className="form-group" style={{ marginBottom: '1rem' }}>
+                    <label>AI Model</label>
+                    <select value={geminiModel} onChange={handleModelChange} style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-slate-primary)', color: 'var(--text-primary)', border: '1px solid var(--border-slate)', borderRadius: '4px' }}>
+                        <option value="gemini-2.5-flash">Gemini 2.5 Flash (Fast, Recommended)</option>
+                        <option value="gemini-2.5-pro">Gemini 2.5 Pro (Powerful, Slower)</option>
+                        <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+                        <option value="gemini-2.0-pro-exp-02-05">Gemini 2.0 Pro Experimental</option>
+                    </select>
+                </div>
+
                 <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
                     <button type="button" className="btn-secondary" onClick={handleTestConnection} disabled={isTesting || !apiKey}>
                         {isTesting ? 'Testing...' : 'Test Connection'}
