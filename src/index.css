@@ -7,12 +7,32 @@
   /* Distinct AI Bubble background */
   --accent-gold: #F9AB00;
   --text-primary: #FFFFFF;
-  --text-secondary: #94A3B8;
+  --text-secondary: #CBD5E1;
   --accent-gold-hover: #fcd34d;
   /* Brighter gold for hover */
   --border-slate: #334155;
   --error: #EF4444;
   --success: #10B981;
+}
+
+[data-theme='blue'] {
+  --accent-gold: #3B82F6;
+  --accent-gold-hover: #60A5FA;
+}
+
+[data-theme='red'] {
+  --accent-gold: #EF4444;
+  --accent-gold-hover: #F87171;
+}
+
+[data-theme='emerald'] {
+  --accent-gold: #10B981;
+  --accent-gold-hover: #34D399;
+}
+
+[data-theme='purple'] {
+  --accent-gold: #8B5CF6;
+  --accent-gold-hover: #A78BFA;
 }
 
 * {
@@ -344,4 +364,79 @@ label {
   background-color: rgba(249, 171, 0, 0.1);
   color: var(--accent-gold);
   border: 1px solid var(--accent-gold);
+}
+
+/* --- UI Enhancements & Animations --- */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Data Visualization Bars */
+.bar-chart-wrapper {
+  width: 100%;
+  height: 6px;
+  background-color: var(--bg-slate-primary);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  border: 1px solid var(--border-slate);
+}
+
+.bar-chart-fill {
+  height: 100%;
+  background-color: var(--accent-gold);
+  border-radius: 2px;
+  transition: width 0.5s ease-out;
+}
+
+/* Custom Sliders */
+.slider-container {
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+.slider-track {
+  width: 100%;
+  height: 4px;
+  background-color: var(--border-slate);
+  border-radius: 2px;
+  position: relative;
+  margin-bottom: 0.35rem;
+}
+
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+/* Accessibility Focus Rings */
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
 }

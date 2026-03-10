@@ -2,7 +2,7 @@ import React from 'react';
 import TuningCard from './TuningCard';
 import VehicleSelector from './VehicleSelector'; // GenUI injection
 
-function MessageStream({ messages, isFetching, onVehicleSelect }) {
+function MessageStream({ messages, isFetching, onVehicleSelect, onCompare }) {
 
     // Auto-scroll to bottom of chat
     const streamRef = React.useRef(null);
@@ -42,7 +42,7 @@ function MessageStream({ messages, isFetching, onVehicleSelect }) {
                         {/* 3. GenUI Intersection: Rendering the Math Engine UI inside the chat */}
                         {msg.tuningData && msg.role === 'assistant' && (
                             <div style={{ marginTop: '1rem' }}>
-                                <TuningCard tuningData={msg.tuningData} />
+                                <TuningCard tuningData={msg.tuningData} onCompare={onCompare} />
                             </div>
                         )}
                     </div>

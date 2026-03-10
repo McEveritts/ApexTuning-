@@ -24,7 +24,9 @@ function VehicleSelector({ onVehicleChange, initialValue = "" }) {
             // Attempt to reverse engineer make/model from a string if it matches our data
             const matchingCar = carData.find(car => initialValue.includes(car.make) && initialValue.includes(car.model));
             if (matchingCar) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setSelectedMake(matchingCar.make);
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setSelectedModel(`${matchingCar.year} ${matchingCar.model}`);
             }
         }
@@ -52,7 +54,7 @@ function VehicleSelector({ onVehicleChange, initialValue = "" }) {
     };
 
     return (
-        <div className="dropdown-styled-container" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
+        <div className="dropdown-styled-container animate-slide-up" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem' }}>
             {/* Make Selector */}
             <div className="form-group" style={{ marginBottom: 0 }}>
                 <label>Manufacturer</label>
@@ -60,6 +62,7 @@ function VehicleSelector({ onVehicleChange, initialValue = "" }) {
                     value={selectedMake}
                     onChange={handleMakeChange}
                     className="dropdown-styled"
+                    aria-label="Select Vehicle Manufacturer"
                 >
                     <option value="">-- Select Make --</option>
                     {uniqueMakes.map(make => (
@@ -76,6 +79,7 @@ function VehicleSelector({ onVehicleChange, initialValue = "" }) {
                     onChange={handleModelChange}
                     disabled={!selectedMake}
                     className={`dropdown-styled ${!selectedMake ? 'disabled-select' : ''}`}
+                    aria-label="Select Vehicle Model"
                 >
                     <option value="">-- Select Model --</option>
                     {availableModels.map(car => (

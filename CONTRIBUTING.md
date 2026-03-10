@@ -55,7 +55,7 @@ We enforce a strict, high-performance automotive aesthetic. Do not use hardcoded
 ## 🚀 Pull Request Process
 
 1. Create a feature branch (`git checkout -b feature/amazing-new-thing`).
-2. Ensure your code passes the Vite production build test (`npm run build`).
+2. Ensure your code passes the linter and Vite production build test (`npm run lint` && `npm run build`).
 3. Commit your changes with descriptive messages.
 4. Push to your branch and open a Pull Request against the main branch.
 5. You must fill out the Pull Request Template provided.

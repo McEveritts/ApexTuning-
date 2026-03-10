@@ -14,6 +14,7 @@ Unlike standard static tuning calculators, ApexTuning leverages an advanced **V2
 * **Gemini 3.1 Pro Integration:** Natively interfaces with Google's Generative Language API, supporting bleeding-edge reasoning models (Pro/Deep Think) to handle complex telemetry offsets.
 * **Search Grounding Security:** The API fetch payload explicitly enables Google Search Grounding. The AI queries live Forza community tuning meta and validates base vehicle stats before returning math, eliminating real-world automotive hallucinations.
 * **Strict JSON Output:** The architecture forces `responseMimeType: "application/json"`. Conversational text is stripped out entirely, guaranteeing perfectly mapped, destructured React state updates every time.
+* **V3 GenUI Architecture:** A comprehensive suite of power-user tools including data visualizations, shareable tuning links, a PNG/PDF export engine, multi-car comparison UI, and local caching for favorite tunes.
 
 ## 🚀 Getting Started
 
