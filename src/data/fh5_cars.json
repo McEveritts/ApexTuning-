@@ -1,0 +1,62 @@
+[
+    {
+        "make": "Acura",
+        "model": "NSX",
+        "year": 2017
+    },
+    {
+        "make": "Alfa Romeo",
+        "model": "Giulia Quadrifoglio",
+        "year": 2017
+    },
+    {
+        "make": "Aston Martin",
+        "model": "Vantage",
+        "year": 2019
+    },
+    {
+        "make": "Audi",
+        "model": "RS 6 Avant",
+        "year": 2021
+    },
+    {
+        "make": "BMW",
+        "model": "M4 Competition",
+        "year": 2021
+    },
+    {
+        "make": "Chevrolet",
+        "model": "Corvette Stingray",
+        "year": 2020
+    },
+    {
+        "make": "Ferrari",
+        "model": "F8 Tributo",
+        "year": 2020
+    },
+    {
+        "make": "Ford",
+        "model": "Mustang Shelby GT500",
+        "year": 2020
+    },
+    {
+        "make": "Honda",
+        "model": "Civic Type R",
+        "year": 2018
+    },
+    {
+        "make": "Nissan",
+        "model": "Skyline GT-R V-Spec",
+        "year": 1999
+    },
+    {
+        "make": "Porsche",
+        "model": "911 GT3 RS",
+        "year": 2019
+    },
+    {
+        "make": "Toyota",
+        "model": "Supra RZ",
+        "year": 1998
+    }
+]

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ApiSettingsPanel from './ApiSettingsPanel';
+import VehicleSelector from './VehicleSelector';
 
 function InputDashboard({ onGenerate, isLoading }) {
     const [telemetry, setTelemetry] = useState({
@@ -22,6 +23,13 @@ function InputDashboard({ onGenerate, isLoading }) {
         }));
     };
 
+    const handleVehicleChange = (vehicleString) => {
+        setTelemetry(prev => ({
+            ...prev,
+            carName: vehicleString
+        }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         onGenerate(telemetry);
@@ -36,14 +44,10 @@ function InputDashboard({ onGenerate, isLoading }) {
 
             <form onSubmit={handleSubmit} style={{ marginTop: '2rem' }}>
                 <div className="form-group">
-                    <label>Car Year, Make, and Model</label>
-                    <input
-                        type="text"
-                        name="carName"
-                        value={telemetry.carName}
-                        onChange={handleChange}
-                        placeholder="e.g. 2018 Alfa Romeo Giulia Quadrifoglio"
-                        required
+                    <label>Select Vehicle</label>
+                    <VehicleSelector
+                        onVehicleChange={handleVehicleChange}
+                        initialValue={telemetry.carName}
                     />
                 </div>
 
