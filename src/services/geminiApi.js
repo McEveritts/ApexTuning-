@@ -29,6 +29,7 @@ Do not include markdown formatting like \`\`\`json. Just output the raw JSON obj
       "damping": { "reboundFront": 0.0, "reboundRear": 0.0, "bumpFront": 0.0, "bumpRear": 0.0 },
       "aero": { "front": "String or Number", "rear": "String or Number" },
       "brake": { "bias": 0.0, "pressure": 0.0 },
+      "gearing": { "finalDrive": 0.0, "ratios": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] }, // Array of gear ratios. Output between 4 and 10 numbers depending on the requested transmission.
       "diff": { "accel": 0.0, "decel": 0.0, "center": 0.0 } 
   }
 }
@@ -50,6 +51,9 @@ If manual overrides are provided in the prompt, they override your internal know
 # RULE 3: DYNAMIC SCALING PHYSICS (NO HARD LIMITS)
 Every car has unique minimum and maximum slider boundaries. You MUST NOT use hardcoded static ranges (e.g., do not default to 28 PSI or -1.5 Camber). You must calculate every value dynamically based on the car's specific Weight, Weight Distribution, and presumed Min/Max slider values for its class. 
 Use the proportional tuning formula where applicable: (Max Slider Value - Min Slider Value) * Weight Distribution Percentage + Min Slider Value.
+
+# RULE 4: GEARING & TRANSMISSIONS
+If the user requests a specific transmission (e.g., 4-speed, 7-speed, 10-speed), you must output an array in "tuningData.gearing.ratios" containing EXACTLY that many gear ratio numbers (e.g. 4 numbers for a 4-speed, 10 numbers for a 10-speed). Provide a realistic final drive ratio in "tuningData.gearing.finalDrive".
 `;
 
 export const generateSetup = async (conversationHistory, apiKey) => {
