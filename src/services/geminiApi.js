@@ -37,6 +37,12 @@ Do not include markdown formatting like \`\`\`json. Just output the raw JSON obj
 If the user asks for a tune but does NOT provide the exact Car Year, Make, and Model, you must set "requiresVehicleSelection": true.
 Do NOT attempt to guess the car or provide a generic tune. The frontend UI will render a dropdown widget when this is true.
 
+# RULE 1: SETTINGS OVERRIDES (CRITICAL)
+You must respect the user's explicit Unit System and Discipline preferences appended to the bottom of the system prompt.
+If the Unit System is Metric: Output weight in Kg, power in kW, and tire pressure in Bar.
+If the Unit System is Imperial: Output weight in Lbs, power in HP, and tire pressure in PSI.
+If the user's prompt contradicts the Default Discipline, the user's prompt takes priority.
+
 # RULE 1: THE GROUNDING PROTOCOL
 When you have the full car name, use your internal knowledge to verify Forza Horizon base stats, weight distribution, stock horsepower, and min/max tuning values.
 If manual overrides are provided in the prompt, they override your internal knowledge.
@@ -54,6 +60,12 @@ export const generateSetup = async (conversationHistory, apiKey) => {
     }
 
     try {
+        // Read User Preferences
+        const unitSystem = localStorage.getItem('PREF_UNIT_SYSTEM') || 'imperial';
+        const defaultDiscipline = localStorage.getItem('PREF_DEFAULT_DISCIPLINE') || 'street';
+
+        const dynamicSystemInstruction = SYSTEM_INSTRUCTION + `\n\n--- DYNAMIC USER PREFERENCES ---\nUNIT SYSTEM: ${unitSystem.toUpperCase()}\nDEFAULT DISCIPLINE: ${defaultDiscipline.toUpperCase()}`;
+
         const response = await fetch(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + apiKey,
             {
@@ -63,7 +75,7 @@ export const generateSetup = async (conversationHistory, apiKey) => {
                 },
                 body: JSON.stringify({
                     systemInstruction: {
-                        parts: [{ text: SYSTEM_INSTRUCTION }]
+                        parts: [{ text: dynamicSystemInstruction }]
                     },
                     contents: conversationHistory.map(msg => ({
                         role: msg.role === 'assistant' ? 'model' : 'user', // Map our UI roles to Gemini roles

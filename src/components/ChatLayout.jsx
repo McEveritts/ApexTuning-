@@ -1,7 +1,8 @@
+
 import { useState } from 'react';
 import ChatInput from './ChatInput';
 import MessageStream from './MessageStream';
-import ApiSettingsPanel from './ApiSettingsPanel';
+import SettingsPanel from './SettingsPanel';
 import { generateSetup } from '../services/geminiApi';
 
 function ChatLayout() {
@@ -36,7 +37,7 @@ function ChatLayout() {
             // Note: We need to update geminiApi.js to accept conversational history arrays context.
             // For now passing the newest request.
             const enhancedPrompt = manualOverrides ?
-                `User Request: ${promptText}\n[SYSTEM OVERRIDES INJECTED: ${JSON.stringify(manualOverrides)}]` :
+                `User Request: ${promptText} \n[SYSTEM OVERRIDES INJECTED: ${JSON.stringify(manualOverrides)}]` :
                 promptText;
 
             // This assumes the new geminiApi.js will return { narrative: string, config: object }
@@ -68,6 +69,20 @@ function ChatLayout() {
         }
     };
 
+    // Callback to wipe contextual memory from the App Data settings
+    const handleClearChat = () => {
+        if (window.confirm("Are you sure you want to clear your conversation history? This cannot be undone.")) {
+            setMessages([{
+                id: Date.now().toString(),
+                role: 'assistant',
+                content: "I am the ApexTuning AI. What vehicle are we tuning today? (Year, Make, Model)",
+                tuningData: null,
+                requiresVehicleSelection: false
+            }]);
+            setSidebarOpen(false);
+        }
+    };
+
     return (
         <div className="chat-layout">
 
@@ -78,20 +93,15 @@ function ChatLayout() {
                 </button>
             </div>
 
-            <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+            <aside className={`sidebar ${sidebarOpen ? 'open' : ''} `}>
                 <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--border-slate)' }}>
                     <h1 className="header-title" style={{ fontSize: '1.5rem' }}>Apex<span className="text-gold">Tuning</span></h1>
                     <div className="header-accent" style={{ marginBottom: 0, width: '40px', height: '2px' }}></div>
                 </div>
 
-                <div style={{ padding: '1.5rem', overflowY: 'auto' }}>
-                    <ApiSettingsPanel />
-                    {/* Future: Render chat history sessions here */}
-                    <div style={{ marginTop: '2rem' }}>
-                        <button onClick={() => setMessages([])} className="btn-secondary" style={{ width: '100%' }}>
-                            + Start New Tune
-                        </button>
-                    </div>
+                <div style={{ flex: 1, overflowY: 'auto', padding: '1.5rem' }}>
+                    {/* Dedicated Settings Panel (API, Defaults, App Data) */}
+                    <SettingsPanel onClearChat={handleClearChat} />
                 </div>
             </aside>
 
@@ -105,11 +115,11 @@ function ChatLayout() {
             </main>
 
             <style>{`
-    @media(min - width: 768px) {
-                    .mobile - toolbar { display: none!important; }
-                .main - chat - area { paddingTop: 0!important; }
-    }
-        `}</style>
+                @media(min-width: 768px) {
+                    .mobile-toolbar { display: none !important; }
+                    .main-chat-area { paddingTop: 0 !important; }
+                }
+            `}</style>
         </div>
     );
 }
