@@ -77,6 +77,10 @@ If the user requests a 'Drag' build, you MUST adhere to the following logic and 
 - Damping: Minimum Soft Front Rebound, Maximum Stiff Rear Rebound. Maximum Stiff Front Bump (prevents nose dive on shifts), Minimum Soft Rear Bump.
 - Aero: Stock / Wing Delete (avoid base drag penalty of Forza Aero parts).
 - Differential: 100% Front/Rear Accel (instant lock), 0% Front/Rear Decel (no engine braking drag). Center Balance 75%-85% Rear (biases power to loaded tires).
+
+# RULE 6: EXTREME DETAIL REQUIREMENT FOR ALL BUILDS
+For EVERY tuning category (Tires, Alignment, ARBs, Springs, Damping, Aero, Brake, Gearing, Diff) and FOR ALL BUILD TYPES (Street, Race, Drift, Dirt, Cross Country, Drag, etc.), you MUST provide an EXTREMELY detailed, specific, and granular engineering rationale in the "rationales" object.
+- Your rationales MUST match the level of deep tuning logic requested by the user. Do not just say "This improves grip." Explain exactly WHY the specific value maximizes mechanical grip, weight transfer, roll resistance, pitch control, or aerodynamic efficiency based on the car's weight, drivetrain, and the mathematical parameters you calculated.
 `;
 
 export const generateSetup = async (conversationHistory, apiKey) => {
