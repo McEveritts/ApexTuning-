@@ -22,6 +22,18 @@ Do not include markdown formatting like \`\`\`json. Just output the raw JSON obj
       // Do NOT include this object if requiresVehicleSelection is true.
       "targetClass": "String (e.g. S1)",
       "discipline": "String (e.g. STREET)",
+      "upgrades": {
+          // Explicitly list the foundational physical parts required for this build before tuning.
+          "engine": "String (e.g., Stock, 6.2L V8 DSC Swap)",
+          "aspiration": "String (e.g., Stock, Twin Turbo)",
+          "tires": "String (e.g., Drag Tire Compound, Semi-Slick)",
+          "transmission": "String (e.g., Race 7-Speed)",
+          "differential": "String (e.g., Race Differential)",
+          "suspension": "String (e.g., Rally Springs, Race Springs)",
+          "arbs": "String (e.g., Race ARBs Front & Rear)",
+          "aero": "String (e.g., Stock Aero / Wing Delete, Forza Adjustable)",
+          "weightReduction": "String (e.g., Race Weight Reduction, Stock)"
+      },
       "tires": { "front": 0.0, "rear": 0.0 },
       "alignment": { "camberFront": 0.0, "camberRear": 0.0, "toeFront": 0.0, "toeRear": 0.0, "caster": 0.0 },
       "arbs": { "front": 0.0, "rear": 0.0 },

@@ -52,6 +52,24 @@ function TuningCard({ tuningData }) {
                 </button>
             </div>
 
+            {/* REQUIRED UPGRADES / PARTS LIST */}
+            {tuningData.upgrades && (
+                <div className="panel-dark" style={{ padding: '1.5rem', marginBottom: '1.5rem', border: '1px solid var(--border-gold)' }}>
+                    <h4 style={{ color: 'var(--text-gold)', marginBottom: '1rem', marginTop: 0, fontSize: '1.1rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem' }}>Required Upgrades / Build Sheet</h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                        {tuningData.upgrades.engine && <div><span style={{ color: 'var(--text-secondary)' }}>Engine:</span> <span className="font-bold">{tuningData.upgrades.engine}</span></div>}
+                        {tuningData.upgrades.aspiration && <div><span style={{ color: 'var(--text-secondary)' }}>Aspiration:</span> <span className="font-bold">{tuningData.upgrades.aspiration}</span></div>}
+                        {tuningData.upgrades.tires && <div><span style={{ color: 'var(--text-secondary)' }}>Tires:</span> <span className="font-bold">{tuningData.upgrades.tires}</span></div>}
+                        {tuningData.upgrades.transmission && <div><span style={{ color: 'var(--text-secondary)' }}>Transmission:</span> <span className="font-bold">{tuningData.upgrades.transmission}</span></div>}
+                        {tuningData.upgrades.differential && <div><span style={{ color: 'var(--text-secondary)' }}>Differential:</span> <span className="font-bold">{tuningData.upgrades.differential}</span></div>}
+                        {tuningData.upgrades.suspension && <div><span style={{ color: 'var(--text-secondary)' }}>Suspension:</span> <span className="font-bold">{tuningData.upgrades.suspension}</span></div>}
+                        {tuningData.upgrades.arbs && <div><span style={{ color: 'var(--text-secondary)' }}>ARBs:</span> <span className="font-bold">{tuningData.upgrades.arbs}</span></div>}
+                        {tuningData.upgrades.aero && <div><span style={{ color: 'var(--text-secondary)' }}>Aero:</span> <span className="font-bold">{tuningData.upgrades.aero}</span></div>}
+                        {tuningData.upgrades.weightReduction && <div><span style={{ color: 'var(--text-secondary)' }}>Weight Reduction:</span> <span className="font-bold">{tuningData.upgrades.weightReduction}</span></div>}
+                    </div>
+                </div>
+            )}
+
             <div className="layout-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
 
                 {/* TIRES */}
