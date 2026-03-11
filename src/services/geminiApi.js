@@ -30,7 +30,20 @@ Do not include markdown formatting like \`\`\`json. Just output the raw JSON obj
       "aero": { "front": "String or Number", "rear": "String or Number" },
       "brake": { "bias": 0.0, "pressure": 0.0 },
       "gearing": { "finalDrive": 0.0, "ratios": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] }, // Array of gear ratios. Output between 4 and 10 numbers depending on the requested transmission.
-      "diff": { "accel": 0.0, "decel": 0.0, "center": 0.0 } 
+      "diff": { "accel": 0.0, "decel": 0.0, "center": 0.0 },
+      "rationales": {
+          // Provide EXTREMELY detailed, high-level engineering rationales for the chosen settings in each category. 
+          // Explain WHY these specific numbers were chosen for this specific car and build type (e.g., "Allows the front end to travel upward, promoting rearward weight transfer.")
+          "tires": "String",
+          "alignment": "String",
+          "arbs": "String",
+          "springs": "String",
+          "damping": "String",
+          "aero": "String",
+          "brake": "String",
+          "gearing": "String",
+          "diff": "String"
+      }
   }
 }
 
@@ -54,6 +67,16 @@ Use the proportional tuning formula where applicable: (Max Slider Value - Min Sl
 
 # RULE 4: GEARING & TRANSMISSIONS
 If the user requests a specific transmission (e.g., 4-speed, 7-speed, 10-speed), you must output an array in "tuningData.gearing.ratios" containing EXACTLY that many gear ratio numbers (e.g. 4 numbers for a 4-speed, 10 numbers for a 10-speed). Provide a realistic final drive ratio in "tuningData.gearing.finalDrive".
+
+# RULE 5: DRAG RACING SPECIFIC TUNING LOGIC
+If the user requests a 'Drag' build, you MUST adhere to the following logic and values for maximum straight-line performance:
+- Tires: Drag Compound, Maximum Front/Rear Width, 15.0 PSI Front/Rear Pressure (allows wrinkle to absorb torque spike).
+- Alignment: 0.0° Front/Rear Camber (flat contact patch), 0.0° Front/Rear Toe (eliminates scrub), 7.0° Front Caster (maximizes high-speed stability).
+- Anti-Roll Bars: Maximum Stiff Front (prevents chassis torque-twist), Maximum Stiff Rear (forces even compression).
+- Springs/Height: Minimum Soft Front Springs (promotes lift), Maximum Stiff Rear Springs (supports weight transfer), Maximum High Front Height, Minimum Low Rear Height.
+- Damping: Minimum Soft Front Rebound, Maximum Stiff Rear Rebound. Maximum Stiff Front Bump (prevents nose dive on shifts), Minimum Soft Rear Bump.
+- Aero: Stock / Wing Delete (avoid base drag penalty of Forza Aero parts).
+- Differential: 100% Front/Rear Accel (instant lock), 0% Front/Rear Decel (no engine braking drag). Center Balance 75%-85% Rear (biases power to loaded tires).
 `;
 
 export const generateSetup = async (conversationHistory, apiKey) => {

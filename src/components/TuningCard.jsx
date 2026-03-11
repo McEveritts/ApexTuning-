@@ -20,6 +20,24 @@ function TuningCard({ tuningData }) {
         alert('Tuning values copied to clipboard!');
     };
 
+    // Helper to render rationale text if it exists
+    const renderRationale = (rationaleText) => {
+        if (!rationaleText) return null;
+        return (
+            <div style={{
+                marginTop: '1rem',
+                paddingTop: '0.75rem',
+                borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+                fontSize: '0.85rem',
+                color: 'var(--text-tertiary)',
+                fontStyle: 'italic',
+                lineHeight: '1.4'
+            }}>
+                "{rationaleText}"
+            </div>
+        );
+    };
+
     if (!tuningData) return null;
 
     return (
@@ -47,6 +65,7 @@ function TuningCard({ tuningData }) {
                         <span>Rear:</span>
                         <span className="text-gold font-bold">{tuningData.tires?.rear?.toFixed(1) || "N/A"}</span>
                     </div>
+                    {renderRationale(tuningData.rationales?.tires)}
                 </div>
 
                 {/* ALIGNMENT */}
@@ -57,6 +76,7 @@ function TuningCard({ tuningData }) {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Toe F:</span> <span className="text-gold font-bold">{tuningData.alignment?.toeFront?.toFixed(1) || "N/A"}°</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Toe R:</span> <span className="text-gold font-bold">{tuningData.alignment?.toeRear?.toFixed(1) || "N/A"}°</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Caster:</span> <span className="text-gold font-bold">{tuningData.alignment?.caster?.toFixed(1) || "N/A"}°</span></div>
+                    {renderRationale(tuningData.rationales?.alignment)}
                 </div>
 
                 {/* ARBS */}
@@ -70,6 +90,7 @@ function TuningCard({ tuningData }) {
                         <span>Rear:</span>
                         <span className="text-gold font-bold">{tuningData.arbs?.rear?.toFixed(1) || "N/A"}</span>
                     </div>
+                    {renderRationale(tuningData.rationales?.arbs)}
                 </div>
 
                 {/* SPRINGS & RIDE HEIGHT */}
@@ -79,6 +100,7 @@ function TuningCard({ tuningData }) {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Springs R:</span> <span className="text-gold font-bold">{tuningData.springs?.rear?.toFixed(1) || "N/A"}</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Height F:</span> <span className="text-gold font-bold">{tuningData.springs?.rideHeightFront || "N/A"}</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Height R:</span> <span className="text-gold font-bold">{tuningData.springs?.rideHeightRear || "N/A"}</span></div>
+                    {renderRationale(tuningData.rationales?.springs)}
                 </div>
 
                 {/* DAMPING */}
@@ -88,6 +110,7 @@ function TuningCard({ tuningData }) {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Rebound R:</span> <span className="text-gold font-bold">{tuningData.damping?.reboundRear?.toFixed(1) || "N/A"}</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Bump F:</span> <span className="text-gold font-bold">{tuningData.damping?.bumpFront?.toFixed(1) || "N/A"}</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Bump R:</span> <span className="text-gold font-bold">{tuningData.damping?.bumpRear?.toFixed(1) || "N/A"}</span></div>
+                    {renderRationale(tuningData.rationales?.damping)}
                 </div>
 
                 {/* AERO & BRAKES */}
@@ -97,6 +120,7 @@ function TuningCard({ tuningData }) {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Aero R:</span> <span className="text-gold font-bold">{tuningData.aero?.rear || "N/A"}</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem' }}><span>Brake Bias:</span> <span className="text-gold font-bold">{tuningData.brake?.bias || "N/A"}%</span></div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}><span>Pressure:</span> <span className="text-gold font-bold">{tuningData.brake?.pressure || "N/A"}%</span></div>
+                    {renderRationale(tuningData.rationales?.aero)}
                 </div>
 
                 {/* DYNAMIC GEARING */}
@@ -113,6 +137,7 @@ function TuningCard({ tuningData }) {
                                 <span className="text-gold font-bold">{ratio?.toFixed(2) || "N/A"}</span>
                             </div>
                         ))}
+                        {renderRationale(tuningData.rationales?.gearing)}
                     </div>
                 )}
 
@@ -126,6 +151,7 @@ function TuningCard({ tuningData }) {
                             <span>Center Balance:</span> <span className="text-gold font-bold">{tuningData.diff?.center}%</span>
                         </div>
                     )}
+                    {renderRationale(tuningData.rationales?.diff)}
                 </div>
 
             </div>
