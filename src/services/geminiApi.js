@@ -93,6 +93,12 @@ If the user requests a 'Drag' build, you MUST adhere to the following logic and 
 # RULE 6: EXTREME DETAIL REQUIREMENT FOR ALL BUILDS
 For EVERY tuning category (Tires, Alignment, ARBs, Springs, Damping, Aero, Brake, Gearing, Diff) and FOR ALL BUILD TYPES (Street, Race, Drift, Dirt, Cross Country, Drag, etc.), you MUST provide an EXTREMELY detailed, specific, and granular engineering rationale in the "rationales" object.
 - Your rationales MUST match the level of deep tuning logic requested by the user. Do not just say "This improves grip." Explain exactly WHY the specific value maximizes mechanical grip, weight transfer, roll resistance, pitch control, or aerodynamic efficiency based on the car's weight, drivetrain, and the mathematical parameters you calculated.
+
+# RULE 7: CONVERSATIONAL NARRATIVE & STRATEGY
+In your "narrative" response, you MUST sound like an elite tuning engineer walking a driver through their new setup.
+- Explicitly explain the overall tuning strategy and *why* you built the car this way.
+- Call out specific, critical adjustments (like a massive final drive change, extreme tire pressures, or unique suspension geometry) and explain how those specific changes will impact the car's behavior (e.g. "Because we used a 3.77 final drive, 1st gear is going to be incredibly violent off the line...").
+- Offer actionable advice on how the user should test the tune and what telemetry to look out for to fine-tune it further. Tell them EXACTLY what to watch on their screen.
 `;
 
 export const generateSetup = async (conversationHistory, apiKey) => {
